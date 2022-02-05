@@ -10,7 +10,7 @@ L’output del prezzo finale va messo fuori in forma umana (con massimo due deci
 
 // chiedo km da percorrere e verifico che abbia scritto in numero
 const userKm = parseFloat( prompt ('Ciao! Quanti chilometri devi percorrere?') );
-console.log(`Chilometri da percorre = ${userKm} km`);
+console.log(`Chilometri da percorre = ${userKm.toFixed(2)} km`);
 
 if ( isNaN(userKm) ){
     alert('Devi inserire i chilometri in numero, grazie!');
@@ -18,10 +18,15 @@ if ( isNaN(userKm) ){
 
 // chiedo età e verifico che abbia scritto in numero
 const userAge = parseInt( prompt('Quanti anni hai?') );
-console.log(`L'età del passeggero è di ${userAge} anni`);
 
 if ( isNaN(userAge) ){
     alert('Devi inserire la tua età in numero, grazie!');
+}
+
+if (userAge > 1) {
+    console.log(`L'età del passeggero è di ${userAge} anni`);
+} else{
+    console.log(`L'età del passeggero è di ${userAge} anno`);
 }
 
 // Calcolo prezzo biglietto pieno oppure scontato
@@ -30,14 +35,14 @@ const fullTicketPrice = (userKm * 0.21);
 
 if (userAge < 18){
     let discountedTicket = ( (fullTicketPrice * 20) / 100 );
-    console.log(`Prezzo biglietto scontato = ${discountedTicket} €`);
+    console.log(`Prezzo biglietto scontato = ${discountedTicket.toFixed(2)} €`);
 
 } else if (userAge > 65){
     let discountedTicket = ( (fullTicketPrice * 40) / 100 );
-    console.log(`Prezzo biglietto scontato = ${discountedTicket} €`);
+    console.log(`Prezzo biglietto scontato = ${discountedTicket.toFixed(2)} €`);
 
 } else{
-    console.log(`Prezzo biglietto = ${fullTicketPrice} €`);
+    console.log(`Prezzo biglietto = ${fullTicketPrice.toFixed(2)} €`);
 }
 
 

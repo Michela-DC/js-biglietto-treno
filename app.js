@@ -8,19 +8,38 @@ Sulla base di queste informazioni dovrà calcolare il prezzo totale del viaggio,
 L’esercizio richiede di fare un minimo di controlli sui dati inseriti dall’utente.
 L’output del prezzo finale va messo fuori in forma umana (con massimo due decimali, per indicare centesimi sul prezzo).*/
 
-const userKm = parseInt( prompt ('Ciao! Quanti chilometri devi percorrere?') );
-console.log(userKm);
+// chiedo km da percorrere e verifico che abbia scritto in numero
+const userKm = parseFloat( prompt ('Ciao! Quanti chilometri devi percorrere?') );
+console.log(`Chilometri da percorre = ${userKm} km`);
 
 if ( isNaN(userKm) ){
     alert('Devi inserire i chilometri in numero, grazie!');
 }
 
+// chiedo età e verifico che abbia scritto in numero
 const userAge = parseInt( prompt('Quanti anni hai?') );
-console.log(userAge);
+console.log(`L'età del passeggero è di ${userAge} anni`);
 
 if ( isNaN(userAge) ){
     alert('Devi inserire la tua età in numero, grazie!');
 }
+
+// Calcolo prezzo biglietto pieno oppure scontato
+const fullTicketPrice = (userKm * 0.21);
+// console.log(fullTicketPrice);
+
+if (userAge < 18){
+    let discountedTicket = ( (fullTicketPrice * 20) / 100 );
+    console.log(`Prezzo biglietto scontato = ${discountedTicket} €`);
+
+} else if (userAge > 65){
+    let discountedTicket = ( (fullTicketPrice * 40) / 100 );
+    console.log(`Prezzo biglietto scontato = ${discountedTicket} €`);
+
+} else{
+    console.log(`Prezzo biglietto = ${fullTicketPrice} €`);
+}
+
 
 
 

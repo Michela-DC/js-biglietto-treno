@@ -11,70 +11,92 @@ L’output del prezzo finale va messo fuori in forma umana (con massimo due deci
 let userKm = parseFloat( prompt ('Ciao! Quanti chilometri devi percorrere?') );
 console.log(`Chilometri da percorre = ${userKm.toFixed(2)} km`);
 
-if ( isNaN(userKm) ){
-    alert('Devi inserire i chilometri in numero, grazie!');
-}
-
 let HTMLkm = document.getElementById('km');
 
-HTMLkm.innerHTML += ` ${userKm.toFixed(2)} Km`;
+let errore = false;
 
+if ( isNaN(userKm) ){
+    alert('Devi inserire i chilometri in numero, grazie!');
 
-// chiedo età, verifico che abbia scritto in numero e stampo su console e html
-let userAge = parseInt( prompt('Quanti anni hai?') );
+    errore = true;
+    console.log(errore)
 
-if ( isNaN(userAge) ){
-    alert('Devi inserire la tua età in numero, grazie!');
+    HTMLkm.innerHTML += ` --> Errore - Devi inserire i chilometri in numero!`;
 }
 
-let HTMLage = document.getElementById('age')
+// Se ha inserito correttamente i chilometri
+if(errore === false){
+    console.log(errore)
 
-if (userAge > 1) {
-    console.log(`L'età del passeggero è di ${userAge} anni`);
+    HTMLkm.innerHTML += ` ${userKm.toFixed(2)} Km`;
 
-    HTMLage.innerHTML += ` ${userAge} anni`;
-} else{
-    console.log(`L'età del passeggero è di ${userAge} anno`);
-
-    HTMLage.innerHTML += ` ${userAge} anno`;
-}
-
-
-// Calcolo prezzo biglietto pieno oppure scontato e stampo su html
-let fullTicketPrice = (userKm * 0.21);
-
-let discount = 0;
-
-let HTMLdiscount = document.getElementById('discount');
-
-let HTMLticketPrice = document.getElementById('ticket-price');
-
-
-if (userAge < 18){
-    discount = ( (fullTicketPrice * 20) / 100 );
-
-    let discountedTicket = fullTicketPrice - discount;
-
-    HTMLdiscount.innerHTML += ` ${discount.toFixed(2)} &euro;`;
-
-    HTMLticketPrice.innerHTML += ` ${discountedTicket.toFixed(2)} &euro;`;
+    // chiedo età, verifico che abbia scritto in numero e stampo su console e html
+    let userAge = parseInt( prompt('Quanti anni hai?') );
     
+    if ( isNaN(userAge) ){
+        alert('Devi inserire la tua età in numero, grazie!');
+        errore = true;
 
-} else if (userAge > 65){
-    discount = ( (fullTicketPrice * 40) / 100 );
+        let HTMLage = document.getElementById('age')
 
-    discountedTicket = fullTicketPrice - discount;
+        HTMLage.innerHTML += ` --> Errore - Devi inserire l'età in numero!`;
 
-    HTMLdiscount.innerHTML += ` ${discount.toFixed(2)} &euro;`;
+    }
 
-    HTMLticketPrice.innerHTML += ` ${discountedTicket.toFixed(2)} &euro;`;
+    if(errore === false) {
 
-} else{
-
-    HTMLdiscount.innerHTML += ` ${discount} &euro;`;
-
-    HTMLticketPrice.innerHTML += ` ${fullTicketPrice.toFixed(2)} &euro;`;
-
+        let HTMLage = document.getElementById('age')
+        
+        if (userAge > 1) {
+            console.log(`L'età del passeggero è di ${userAge} anni`);
+        
+            HTMLage.innerHTML += ` ${userAge} anni`;
+    
+        } else{
+            console.log(`L'età del passeggero è di ${userAge} anno`);
+        
+            HTMLage.innerHTML += ` ${userAge} anno`;
+        }
+        
+        
+        // Calcolo prezzo biglietto pieno oppure scontato e stampo su html
+        let fullTicketPrice = (userKm * 0.21);
+        
+        let discount = 0;
+        
+        let HTMLdiscount = document.getElementById('discount');
+        
+        let HTMLticketPrice = document.getElementById('ticket-price');
+        
+        
+        if (userAge < 18){
+            discount = ( (fullTicketPrice * 20) / 100 );
+        
+            let discountedTicket = fullTicketPrice - discount;
+        
+            HTMLdiscount.innerHTML += ` ${discount.toFixed(2)} &euro;`;
+        
+            HTMLticketPrice.innerHTML += ` ${discountedTicket.toFixed(2)} &euro;`;
+            
+        
+        } else if (userAge > 65){
+            discount = ( (fullTicketPrice * 40) / 100 );
+        
+            discountedTicket = fullTicketPrice - discount;
+        
+            HTMLdiscount.innerHTML += ` ${discount.toFixed(2)} &euro;`;
+        
+            HTMLticketPrice.innerHTML += ` ${discountedTicket.toFixed(2)} &euro;`;
+        
+        } else{
+        
+            HTMLdiscount.innerHTML += ` ${discount} &euro;`;
+        
+            HTMLticketPrice.innerHTML += ` ${fullTicketPrice.toFixed(2)} &euro;`;
+        
+        }
+    }
+    
 }
 
 
